@@ -8,11 +8,9 @@ pin = 5047
 print("Hello, " + name)
 print("Please enter the PIN to try out the Program")
 
-# Random Percentual
-def percentual():
-    global x
-    x = random.randrange(1, 101)
+# Builtins Variables
 
+x = builtins.randomperc["x"]
 
 # Asks to the user to rerun the program
 def ask_restart():
@@ -52,7 +50,7 @@ if start == 1:
     print("c: You- wait, why would you eat it")
     opt = input()
     if opt == "a":
-        percentual()
+        builtins.percentual()
         if x <= 75:
             print("You obtained...")
             sleep(3)
