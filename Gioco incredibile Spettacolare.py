@@ -1,4 +1,4 @@
-import builtins
+import builtin
 from time import sleep
 import random
 # Credentials
@@ -8,16 +8,11 @@ pin = 5047
 print("Hello, " + name)
 print("Please enter the PIN to try out the Program")
 
-# Builtins Variables
+# Builtin Variables
 
-x = builtins.randomperc["x"]
+x = builtin.randomperc["x"]
 
-# Asks to the user to rerun the program
-def ask_restart():
-    print("Please restart the program")
-    return
-
-# checks if the pin is correct, else it reruns the function (I made a loop without using for/while; W)
+# checks if the pin is correct, else it reruns the function (recursion)
 def checkpin():
     imported_pin = int(input())
     if imported_pin == pin:
@@ -50,7 +45,7 @@ if start == 1:
     print("c: You- wait, why would you eat it")
     opt = input()
     if opt == "a":
-        builtins.percentual()
+        builtin.percentual()
         if x <= 75:
             print("You obtained...")
             sleep(3)
@@ -63,7 +58,7 @@ if start == 1:
 
         else:
             print("Even I don't know how, but you died thanks to something")
-            ask_restart()
+            builtin.ask_restart()
 
 # Dungeon arc
 elif start == 2:
