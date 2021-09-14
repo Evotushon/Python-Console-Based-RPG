@@ -7,7 +7,7 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "cwd": "c:\\Users\\tizia\\Desktop\\Daniel\\Classici Script Super Complessi\\Test\\Python\\Semplice Progetto Python",
+      "cwd": "c:\\Users\\tizia\\Desktop\\Daniel\\Classici Script Super Complessi\\Test\\Python\\Console Based RPG",
       "environment": [],
       "program": "c:\\Users\\tizia\\Desktop\\Daniel\\Classici Script Super Complessi\\Test\\Python\\Semplice Progetto Python\\build\\Debug\\outDebug",
       "internalConsoleOptions": "openOnSessionStart",
