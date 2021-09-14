@@ -4,7 +4,6 @@ import random
 # Credentials
 print("Insert your username")
 name = input()
-pin = 5047
 print("Hello, " + name)
 print("Please enter the PIN to try out the Program")
 
@@ -12,25 +11,15 @@ print("Please enter the PIN to try out the Program")
 
 x = builtin.randomperc["x"]
 
-# checks if the pin is correct, else it reruns the function (recursion)
-def checkpin():
-    imported_pin = int(input())
-    if imported_pin == pin:
-        print("Prepare yourself for this game!")
-        print("Please wait 1 minute before continuing, we need to load at least 1 TB of functionalities")
-        sleep(2)
-        print("Just joking! All the features should've loaded since you started the program")
-    # reruns the program everytime the user puts the wrong password
-    else:
-        print("Wrong PIN! Rerun the Program!")
-        checkpin()
 
-
-checkpin()
+builtin.checkpin()
+print("Prepare yourself for this game!")
+print("Please wait 1 minute before continuing, we need to load at least 1 TB of functionalities")
+sleep(2)
+print("Just joking! All the features should've loaded since you started the program")
 sleep(0.5)
 # Asks you where you want to start your adventure
-print(
-    "Where would you like to start your adventure at? Type the ID of the area you want to start at to actually start!")
+print("Where would you like to start your adventure at? Type the ID of the area you want to start at to actually start!")
 print("Options:\n\"1\" to start in the woods\n\"2\" to start in a dungeon\n\"3\" to start in an haunted mansion")
 start = int(input())
 print("Quick instructions: type the choice you want to make by saying the letter (ID) of the option you want to "
