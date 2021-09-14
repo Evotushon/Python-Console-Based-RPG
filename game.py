@@ -1,18 +1,28 @@
+# Local Modules
 import builtin
+import enemies
+
 from time import sleep
 import random
+
+# Variable X changes from 1 to max number used
+def percentual(max):
+    global perc
+    perc = random.randrange(1, max)
+
+
 # Credentials
 print("Insert your username")
 name = input()
 print("Hello, " + name)
 print("Please enter the PIN to try out the Program")
 
-# Builtin Variables
+# builtin Variables
 
-x = builtin.randomperc["x"]
+x = percentual(100)
 
 
-builtin.checkpin()
+builtin.checkpin(5047)
 print("Prepare yourself for this game!")
 print("Please wait 1 minute before continuing, we need to load at least 1 TB of functionalities")
 sleep(2)

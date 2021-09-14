@@ -1,7 +1,5 @@
-pin = 5047
-
 # checks if the pin is correct, else it reruns the function (recursion)
-def checkpin():
+def checkpin(pin):
     imported_pin = int(input())
     if imported_pin == pin:
         pass
