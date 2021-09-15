@@ -10,13 +10,17 @@ The builtin functions are still in-dev so for now you shouldn't worry about that
 
 ## Changelogs and Informations about Alpha Versions
 
-### Informations
+### **Informations**
 
 * All of the `0.1` versions include the changes made within the **Woods** Arc
 
 * All of the `0.2` version include the changes made within the **Dungeon** Arc
 
 * All of the `0.3` version include the changes made within the **Haunted Mansion** Arc
+
+----
+
+### **Changelogs**
 
 ### `0.1.0`
 
@@ -25,3 +29,5 @@ Project Released on GitHub
 ### `0.1.1`
 
 Added README.md and updated it multiple times
+
+### `0.1.2`
