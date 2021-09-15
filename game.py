@@ -12,8 +12,8 @@ import random
 
 # The Max value that you want to use should be the limit that is included (example: I want to do a probability within 1 and 100, 100 included, so I write that "max" is 100)
 def percentual(max):
-    global perc
-    perc = random.randrange(1, max+1)
+    global x
+    x = random.randrange(1, max+1)
 # Credentials
 print("Insert your username")
 name = input()
@@ -48,14 +48,14 @@ if start == 1:
     print("c: You- wait, why would you eat it")
     opt = input()
     if opt == "a":
-        percentual(100)
-        if perc <= 75:
+        perc
+        if x <= 75:
             print("You obtained...")
             sleep(3)
             print("Nothing!")
             # Continue from here
         
-        elif perc == 76:
+        elif x == 76:
             print("EXPlOOOOOOOOOOOOOSION")
             exit()
 
