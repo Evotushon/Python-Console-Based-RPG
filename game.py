@@ -1,11 +1,9 @@
 # Local Modules
-# Remember to do 'from directory import file' to use its functions, else it won't work for some reason
-import builtin
-import enemies
-import playerstats
-from builtin import askrestart
-from builtin import checkpin
-from builtin import fight
+# to import the directories add another comma here and put the exact name of the directory, else read the comment below
+import builtin, enemies, playerstats, equipment
+# to import a module from a nested directory add another comma here and add the name of the directory with the module
+from builtin import askrestart, checkpin
+from equipment import armor, weapon
 
 from time import sleep
 import random
