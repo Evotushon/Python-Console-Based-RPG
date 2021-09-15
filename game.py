@@ -69,3 +69,7 @@ elif start == 2:
 # Haunted Mansion arc
 elif start == 3:
     print("We're indev lmao")
+
+# Put every arc you want to put before this else statement
+else:
+    print("You made the program crash you idiot")
