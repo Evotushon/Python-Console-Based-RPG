@@ -13,7 +13,7 @@ saveFileName = "save_%ID%"
 saveFileDir  = "saves"
 
 def getSave(id : int) -> dict:
-    fn = saveFileName.replace("%ID%", id); 
+    fn = saveFileName.replace("%ID%", str(id)); 
     pathtosave = f"{saveFileDir}/{fn}"; 
 
     isempty = True; 
@@ -75,7 +75,7 @@ def writeSave(save : dict, id : int) -> bool:
     if validateSave(save) == False:
         raise Exception("Save is not valid!")
 
-    fn = saveFileName.replace("%ID%", id); 
+    fn = saveFileName.replace("%ID%", str(id)); 
     pathtosave = f"{saveFileDir}/{fn}";
     eraseFileContents(pathtosave)
     f = open(pathtosave)

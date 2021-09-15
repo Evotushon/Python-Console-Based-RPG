@@ -26,15 +26,14 @@ print("Prepare yourself for this game!")
 print("Where would you like to start your adventure at? Type the ID of the area you want to start at to actually start!")
 print("Options:\n\"1\" to start in the woods\n\"2\" to start in a dungeon\n\"3\" to start in an haunted mansion")
 start = int(input())
-print("Quick instructions: type the choice you want to make by saying the letter (ID) of the option you want to "
-      "choose\nRemember, this program is CASE SENSITIVE")
+print("Quick instructions: type the choice you want to make by saying the letter (ID) of the option you want to choose")
 # Woods arc
 if start == 1:
     print("You find yourself in the woods of MaterTua and there is a mysterious chest behind you")
     sleep(0.5)
     print(value.woods1question)
     print()
-    opt = input()
+    opt = input().lower()
     if opt == "a":
         perc = percentual(100)
         if perc <= 75:

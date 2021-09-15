@@ -29,7 +29,7 @@ def check_pin(pin : int) -> None:
     inputpin=-1;
 
     while inputpin == -1:
-        try: inputpin = int(input(value.pincodeprompt.replace("%PINCODE%", pin))) # .replace("%PINCODE%", pin) is doing the placeholder
+        try: inputpin = int(input(value.pincodeprompt.replace("%PINCODE%", str(pin)))) # .replace("%PINCODE%", pin) is doing the placeholder
         except Exception: print(value.pincodenotint)
 
     if inputpin != pin:
