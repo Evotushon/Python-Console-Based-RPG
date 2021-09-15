@@ -1,18 +1,31 @@
+# Local Modules
+# Remember to do 'from directory import file' to use its functions, else it won't work for some reason
 import builtin
+import enemies
+from builtin import askrestart
+from builtin import checkpin
+from builtin import fight
+
 from time import sleep
 import random
+
+# The Max value that you want to use should be the limit that is included (example: I want to do a probability within 1 and 100, 100 included, so I write that "max" is 100)
+def percentual(max):
+    global perc
+    perc = random.randrange(1, max+1)
 # Credentials
 print("Insert your username")
 name = input()
+builtin.askrestart.ask_restart()
 print("Hello, " + name)
 print("Please enter the PIN to try out the Program")
 
-# Builtin Variables
+# builtin Variables
 
-x = builtin.randomperc["x"]
+perc = percentual(100)
 
 
-builtin.checkpin()
+checkpin.check_pin(5047)
 print("Prepare yourself for this game!")
 print("Please wait 1 minute before continuing, we need to load at least 1 TB of functionalities")
 sleep(2)
@@ -34,14 +47,14 @@ if start == 1:
     print("c: You- wait, why would you eat it")
     opt = input()
     if opt == "a":
-        builtin.percentual()
-        if x <= 75:
+        percentual(100)
+        if perc <= 75:
             print("You obtained...")
             sleep(3)
             print("Nothing!")
             # Continue from here
         
-        elif x == 76:
+        elif perc == 76:
             print("EXPlOOOOOOOOOOOOOSION")
             exit()
 
