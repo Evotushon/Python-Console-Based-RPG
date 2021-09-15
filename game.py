@@ -7,6 +7,7 @@ from equipment import armor, weapon
 
 from time import sleep
 import random
+import json
 
 # The Max value that you want to use should be the limit that is included (example: I want to do a probability within 1 and 100, 100 included, so I write that "max" is 100)
 def percentual(max):
