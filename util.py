@@ -1,6 +1,5 @@
-import time
-import savesengine
-import json
+import time, json, sys, time, random
+import savesengine, value
 
 # timestamps
 def getTimeStamp() -> float:
@@ -24,3 +23,30 @@ def saveAndExit(save : dict):
 
 def eraseFileContents(path : str):
     open(path, "w").close()
+
+def ask_restart(): print(value.plsrestart)
+def check_pin(pin : int) -> None:
+    inputpin=-1;
+
+    while inputpin == -1:
+        try: inputpin = int(input(value.pincodeprompt.replace("%PINCODE%", pin))) # .replace("%PINCODE%", pin) is doing the placeholder
+        except Exception: print(value.pincodenotint)
+
+    if inputpin != pin:
+        print(value.pincodeswrong)
+        sys.exit(pin-1)
+def sleepforawhile() -> None:
+    time.sleep(random.randrange(0, 2))
+
+# this is a method overload. check it out in google.
+def sleepforawhile(max : int) -> None: 
+    time.sleep(random.randrange(0, max))
+
+
+def percentual(max : int) -> int:
+    """
+    The Max value that you want to use should be the limit that is included\n
+    Example: I want to do a probability within `1` and `100`, `100` included, so I write that `max` is `100`
+    """
+    #global perc # NEVER DO THAT. NEVER.
+    return random.randrange(1, max+1)

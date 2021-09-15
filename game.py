@@ -8,32 +8,9 @@ from time import sleep
 import random
 import os
 import sys
+from util import *
 
 import value # thats needed for fast editing the messages
-
-def ask_restart(): print(value.plsrestart)
-def check_pin(pin : int) -> None:
-    inputpin=-1;
-
-    while inputpin == -1:
-        try: inputpin = int(input(value.pincodeprompt.replace("%PINCODE%", pin))) # .replace("%PINCODE%", pin) is doing the placeholder
-        except Exception: print(value.pincodenotint)
-
-    if inputpin != pin:
-        print(value.pincodeswrong)
-        sys.exit(pin-1)
-def sleepforawhile() -> None:
-    sleep(random.randrange(0, 2))
-
-# this is a method overload. check it out in google.
-def sleepforawhile(max : int) -> None: 
-    sleep(random.randrange(0, max))
-
-# The Max value that you want to use should be the limit that is included (example: I want to do a probability within 1 and 100, 100 included, so I write that "max" is 100)
-def percentual(max : int) -> int:
-    #global perc
-    # NEVER DO THAT^^^. NEVER.
-    return random.randrange(1, max+1)
 
 # Credentials
 print("Insert your username")
