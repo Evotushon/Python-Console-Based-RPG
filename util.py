@@ -55,5 +55,45 @@ def fancyPrint(out: str) -> None:
     listt = list(out)
     for i in listt:
         print(i, end="")
-        time.sleep(random.uniform(0, 0.05))
+        if i != "\n" or i != " ":
+            time.sleep(random.uniform(0, 0.05))
     print()
+
+def fastFancyPrint(out: str, end="\n") -> None:
+    listt = list(out)
+    for i in listt:
+        print(i, end="")
+        if i != "\n" or i != " ":
+            time.sleep(random.uniform(0, 0.01))
+    print(end=end)
+
+
+def userInput(prompt: str) -> str:
+    return input(str).lower()
+
+def userInput() -> str:
+    return input().lower()
+
+def dinput() -> str:
+    fastFancyPrint(value.defaultprompt, end="")
+    return userInput()
+
+def userChoice(msg: str, choices: list, wrongchoice=value.wrongchoice) -> str:
+    """
+    Provides fast user choice. `msg` is the message you want the user to see,\n
+    and the `choices` is the list of possible choices.
+    """
+    fastFancyPrint(msg)
+    while True:
+        ans = dinput()
+        for i in choices:
+            if ans == str(i):
+                return ans;
+        print(wrongchoice)
+
+def isint(string: str) -> bool:
+    try:
+        int(string); 
+        return True; 
+    except Exception:
+        return False; 

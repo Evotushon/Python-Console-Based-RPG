@@ -4,6 +4,7 @@
 # the reason is that directories are NAMESPACES in python, and its files are CLASSES
 # so its valuable thing. Learn more about OOP.
 
+from re import A
 from time import sleep
 import random
 import os
@@ -11,38 +12,83 @@ import sys
 from util import *
 
 import value # thats needed for fast editing the messages
+import savesengine
+
+currentSave = savesengine.emptySave(); 
+currentSaveId = 1
+
+def save(): savesengine.writeSave(currentSave, currentSaveId)
 
 # Credentials
 
 fancyPrint("Hello, stranger. Would you like to start your adventure?")
-sleep(0.15)
-fancyPrint(" (Y/n)")
-ans = input(value.defaultprompt).lower()
-if ans == "n": fancyPrint("Bye then!"); sleep(0.25); exit(0)
+sleep(0.5)
+fancyPrint("Y/n")
+ans = userChoice("", ["y", "n"])
+if ans == "y": 0
+if ans == "n": fancyPrint("Bye then"); sleep(0.3); print("!")
 
+
+if savesengine.retrieveSaves().__len__() != 0:
+    fancyPrint("Found this saves: ")
+    fancyPrint(savesengine.retrieveSaves())
+    fancyPrint("Would you like to pick one?")
+    sleep(0.5)
+    fancyPrint("Y/n")
+    ans = userChoice("", ["y", "n"])
+    if ans == "y":
+        while True:
+            while True:
+                fancyPrint("Which one?")
+                fastFancyPrint("Note: pick only a number!")
+                selection = dinput()
+                if isint(selection): break; 
+            fancyPrint(f"Picked save №{selection}. Are you sure?")
+            fancyPrint("Y/n")
+            ans = userChoice("", ["y", "n"])
+            if ans == "y": break;
+        currentSave = savesengine.getSave(int(selection))
+    if ans == "n":0
 
 fancyPrint("OK then, so how do I call you?")
-name = input(value.defaultprompt)
+name = dinput()
 #ask_restart() # why are you asking for a restart here?
 
-fancyPrint(f"Hello, {name}") # the same as "" + name, but simplier
-fancyPrint("Please enter the PIN to try out the Program")
+fancyPrint(f"Hello, {name}.") # the same as "" + name, but simplier
+currentSave["name"] = name
+while True:
+    fancyPrint(f"Please write down the ID of your save file.")
+    ans = dinput()
+    if isint(ans): break; 
+currentSaveId = int(ans)
+save()
 
-check_pin(5047)
-fancyPrint("Prepare yourself for this game!")
-# Asks you where you want to start your adventure
-fancyPrint("Where would you like to start your adventure at? Type the ID of the area you want to start at to actually start!")
-fancyPrint("Options:\n\"1\" to start in the woods\n\"2\" to start in a dungeon\n\"3\" to start in an haunted mansion")
-start = int(input())
+fancyPrint("Would you like to name your save?")
+sleep(0.5)
+fastFancyPrint("Y/n")
+ans = userChoice("", ["y", "n"])
+if ans == "y":
+    while True:
+        fancyPrint("Please enter a name for your save.")
+        ans = dinput()
+        ans2 = userChoice("Are you sure?(Y/n)", ["y", "n"])
+        if ans2 == "y": break; 
+    currentSave["saveName"] = ans
+    save()
+
+
+fastFancyPrint("Where would you like to start your adventure at? Type the ID of the area you want to start at to actually start!")
+fastFancyPrint("Options:\n\"1\" to start in the woods\n\"2\" to start in a dungeon\n\"3\" to start in an haunted mansion")
+start = int(userChoice("", [1, 2, 3]))
 fancyPrint("Quick instructions: type the choice you want to make by saying the letter (ID) of the option you want to choose")
 # Woods arc
 if start == 1:
     fancyPrint("You find yourself in the woods of MaterTua and there is a mysterious chest behind you")
     sleep(0.5)
-    print(value.woods1question)
+    fastFancyPrint(value.woods1question)
 
     while True:
-        opt = input(value.defaultprompt).lower()
+        opt = dinput()
         if opt == "a":
             perc = percentual(100)
             if perc <= 75:

@@ -1,6 +1,7 @@
 import json
-from sys import path
-from util import *
+import os
+import re
+import util
 
 # dict is a json data
 
@@ -9,13 +10,25 @@ from util import *
 # another languages.
 
 #CONFIG
-saveFileName = "save_%ID%"
+saveFileName = "save_%ID%" # saveFileName MUST include %ID%
 saveFileDir  = "saves"
+saveFileExt  = "json" # that doesn't really matter
+
+def retrieveSaves() -> list[str]:
+    if "%ID%" not in saveFileName: raise Exception("saveFileName MUST include %ID%!")
+    savePattern = re.compile(saveFileName.replace("%ID%", "\d+")+f".{saveFileExt}")
+    saves = []
+    for root, dirs, files in os.walk(saveFileDir):
+        for i in files:
+            saves.append(savePattern.findall(i))
+    return saves
+        
 
 def getSave(id : int) -> dict:
     fn = saveFileName.replace("%ID%", str(id)); 
-    pathtosave = f"{saveFileDir}/{fn}"; 
+    pathtosave = f"{saveFileDir}/{fn}"+f".{saveFileExt}"; 
 
+    if "%ID%" not in saveFileName: raise Exception("saveFileName MUST include %ID%!")
     isempty = True; 
     isjson = False; 
     f = open(pathtosave);   # open the file
@@ -25,6 +38,7 @@ def getSave(id : int) -> dict:
 
     try: json.loads(fileData); isjson = True; 
     except Exception: 0  # you can use "0" not "pass"
+
 
     if isempty:
         f = open(pathtosave)
@@ -38,18 +52,20 @@ def getSave(id : int) -> dict:
         fileData = json.dumps(emptySave())
 
     jsonData = json.loads(fileData);                 # convert string json to dict json
-    if jsonData["gameVersion"] < 0.1:                # check if save version is supported
-        raise Exception("Unsupported game version")  # 
-    if validateSave(jsonData) == False:              # check if save is valid
+    if validateSave(jsonData) == False:              # then check if the save is valid
         raise Exception("Save is not valid!")        # 
-    return jsonData;                                 # and then return the value! ^=^
-
+    if jsonData["gameVersion"] < 0.1:                # and check if the save version is supported
+        raise Exception("Unsupported game version")  # 
+    return jsonData;                                 # and after all of this, return the value! ^=^
+    
 def emptySave() -> dict:
     """Returns empty save data. Check the code for details."""
+    if "%ID%" not in saveFileName: raise Exception("saveFileName MUST include %ID%!")
     return {
         "gameVersion": 0.1,
         "name": "",
         "xp": 0,
+        "saveName": "$ej_k236",
         "settings": {
             #no settings
         },
@@ -63,7 +79,7 @@ def emptySave() -> dict:
             "xp": 5,
             "health": 100
         },
-        "lastTimeVisit": getTimeStamp()
+        "lastTimeVisit": util.getTimeStamp()
     }
 
 def writeSave(save : dict, id : int) -> bool:
@@ -72,29 +88,26 @@ def writeSave(save : dict, id : int) -> bool:
     Returns `True` if save saved successfully.\n
     Otherwise, you will get `False`."""
 
+    if "%ID%" not in saveFileName: raise Exception("saveFileName MUST include %ID%!")
     if validateSave(save) == False:
         raise Exception("Save is not valid!")
 
     fn = saveFileName.replace("%ID%", str(id)); 
-    pathtosave = f"{saveFileDir}/{fn}";
-    eraseFileContents(pathtosave)
-    f = open(pathtosave)
-    save["lastTimeVisit"] = getTimeStamp()
+    pathtosave = f"{saveFileDir}/{fn}"+f".{saveFileExt}"; 
+    util.eraseFileContents(pathtosave)
+    f = open(pathtosave, 'w')
+    save["lastTimeVisit"] = util.getTimeStamp()
     
     try:
-        f.write(save)
+        f.write(json.dumps(save, indent=3))
     except Exception:
+        f.close()
         return False; 
+    f.close()
     return True; 
 
 def validateSave(save: dict) -> bool:
     """Checks if save is valid"""
+    if "%ID%" not in saveFileName: raise Exception("saveFileName MUST include %ID%!")
     check1 = "gameVersion" in save and "name" in save and "xp" in save and "settings" in save and "gameData" in save and "lastTimeVisit" in save; 
-    check2=False;check3=False;check4=False; 
-    try:
-        check2 = save["gameData"] is dict and save["settings"] is dict; 
-        check3 = save["gameData"]["locationData"] is dict; 
-        check4 = save["lastTimeVisit"] is float and save["gameVersion"] is float; 
-    except Exception:
-        return False; 
-    return check1 and check2 and check3 and check4; 
+    return check1

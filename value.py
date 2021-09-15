@@ -1,4 +1,5 @@
 defaultprompt = "Your answer: "
+wrongchoice   = "It seems like you have choosen the wrong choice. Try again."
 
 woods1question = """What do you do?
 a: You open the chest and see if it has something useful in it
