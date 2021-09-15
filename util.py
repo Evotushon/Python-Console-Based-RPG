@@ -50,3 +50,10 @@ def percentual(max : int) -> int:
     """
     #global perc # NEVER DO THAT. NEVER.
     return random.randrange(1, max+1)
+
+def fancyPrint(out: str) -> None:
+    listt = list(out)
+    for i in listt:
+        print(i, end="")
+        time.sleep(random.uniform(0, 0.05))
+    print()

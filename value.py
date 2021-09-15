@@ -1,4 +1,4 @@
-defaultprompt = ">_ "
+defaultprompt = "Your answer: "
 
 woods1question = """What do you do?
 a: You open the chest and see if it has something useful in it
