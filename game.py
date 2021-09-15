@@ -1,22 +1,39 @@
 # Local Modules
 # Remember to do 'from directory import file' to use its functions, else it won't work for some reason
 import builtin
-import enemies
-from builtin import askrestart
 from builtin import checkpin
 from builtin import fight
 
 from time import sleep
 import random
+import os
+import sys
+
+def ask_restart():
+    print("Please restart the program")
+
+def check_pin(pin : int) -> None:
+    inputpin=-1;
+
+    while inputpin == -1:
+        try: inputpin = int(input(f"Enter the pin code({pin}): "))
+        except Exception: print("Try to re type pin using only numbers. \n  Im bad at reading letter pin codes.")
+
+    if inputpin != pin:
+        print("You used the wrong pin code. Restart the game.")
+        sys.exit(pin-1)
+
 
 # The Max value that you want to use should be the limit that is included (example: I want to do a probability within 1 and 100, 100 included, so I write that "max" is 100)
-def percentual(max):
-    global perc
-    perc = random.randrange(1, max+1)
+def percentual(max : int) -> int:
+    #global perc
+    # NEVER DO THAT^^^. NEVER.
+    return random.randrange(1, max+1)
+
 # Credentials
 print("Insert your username")
 name = input()
-builtin.askrestart.ask_restart()
+ask_restart()
 print("Hello, " + name)
 print("Please enter the PIN to try out the Program")
 
