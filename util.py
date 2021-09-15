@@ -1,4 +1,4 @@
-import time, json, sys, time, random
+import time, json, sys, time, random, os
 import savesengine, value
 
 # timestamps
@@ -51,13 +51,13 @@ def percentual(max : int) -> int:
     #global perc # NEVER DO THAT. NEVER.
     return random.randrange(1, max+1)
 
-def fancyPrint(out: str) -> None:
+def fancyPrint(out: str, end="\n", speed=0.05) -> None:
     listt = list(out)
     for i in listt:
         print(i, end="")
         if i != "\n" or i != " ":
-            time.sleep(random.uniform(0, 0.05))
-    print()
+            time.sleep(random.uniform(0, speed))
+    print(end=end)
 
 def fastFancyPrint(out: str, end="\n") -> None:
     listt = list(out)
@@ -97,3 +97,21 @@ def isint(string: str) -> bool:
         return True; 
     except Exception:
         return False; 
+
+def cls() -> None:
+    if os.name == 'nt':
+        os.system('cls')
+
+
+
+
+
+def gamelogo():
+    cls()
+    for i in value.logo.split("\n"):
+        fancyPrint(i, speed=0.00001)
+    print("                                    ", end="")
+    time.sleep(0.75)
+    fancyPrint("RPGame studios (C)", speed=0.3)
+    time.sleep(5)
+    cls()

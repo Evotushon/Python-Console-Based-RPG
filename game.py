@@ -21,13 +21,13 @@ def save(): savesengine.writeSave(currentSave, currentSaveId)
 
 # Credentials
 
-fancyPrint("Hello, stranger. Would you like to start your adventure?")
-sleep(0.5)
-fancyPrint("Y/n")
+
+pickedasave = False;
+print("Hello, stranger. Would you like to start your adventure?")
+print("Y/n")
 ans = userChoice("", ["y", "n"])
 if ans == "y": 0
-if ans == "n": fancyPrint("Bye then"); sleep(0.3); print("!")
-
+if ans == "n": fancyPrint("Bye then", end=""); sleep(0.75); print("!", end=""); sleep(0.5); exit(0)
 
 if savesengine.retrieveSaves().__len__() != 0:
     fancyPrint("Found this saves: ")
@@ -48,34 +48,35 @@ if savesengine.retrieveSaves().__len__() != 0:
             ans = userChoice("", ["y", "n"])
             if ans == "y": break;
         currentSave = savesengine.getSave(int(selection))
+        pickedasave = True
     if ans == "n":0
+if pickedasave == False:
+    fancyPrint("OK then, so how do I call you?")
+    name = dinput()
+    #ask_restart() # why are you asking for a restart here?
 
-fancyPrint("OK then, so how do I call you?")
-name = dinput()
-#ask_restart() # why are you asking for a restart here?
-
-fancyPrint(f"Hello, {name}.") # the same as "" + name, but simplier
-currentSave["name"] = name
-while True:
-    fancyPrint(f"Please write down the ID of your save file.")
-    ans = dinput()
-    if isint(ans): break; 
-currentSaveId = int(ans)
-save()
-
-fancyPrint("Would you like to name your save?")
-sleep(0.5)
-fastFancyPrint("Y/n")
-ans = userChoice("", ["y", "n"])
-if ans == "y":
+    fancyPrint(f"Hello, {name}.") # the same as "" + name, but simplier
+    currentSave["name"] = name
     while True:
-        fancyPrint("Please enter a name for your save.")
+        fancyPrint(f"Please write down the ID of your save file.")
         ans = dinput()
-        ans2 = userChoice("Are you sure?(Y/n)", ["y", "n"])
-        if ans2 == "y": break; 
-    currentSave["saveName"] = ans
+        if isint(ans): break; 
+    currentSaveId = int(ans)
     save()
 
+    fancyPrint("Would you like to name your save?")
+    sleep(0.5)
+    fastFancyPrint("Y/n")
+    ans = userChoice("", ["y", "n"])
+    if ans == "y":
+        while True:
+            fancyPrint("Please enter a name for your save.")
+            ans = dinput()
+            ans2 = userChoice("Are you sure?(Y/n)", ["y", "n"])
+            if ans2 == "y": break; 
+        currentSave["saveName"] = ans
+        save()
+gamelogo()
 
 fastFancyPrint("Where would you like to start your adventure at? Type the ID of the area you want to start at to actually start!")
 fastFancyPrint("Options:\n\"1\" to start in the woods\n\"2\" to start in a dungeon\n\"3\" to start in an haunted mansion")
