@@ -34,6 +34,6 @@ The builtin functions are still in-dev so for now you shouldn't worry about that
 
 * Ordered some files so that devs can modify them more easily
 
-* Since the change made before caused some bugs (instead of doing ```import directory``` and then ```directory.module.function()``` we did ```from directory import module```)
+* Since the change made before caused some bugs we fixed it (instead of doing ```import directory``` and then ```directory.module.function()``` we did ```from directory import module```)
 
 * Updated README.md as usual

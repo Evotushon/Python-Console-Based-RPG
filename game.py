@@ -2,6 +2,7 @@
 # Remember to do 'from directory import file' to use its functions, else it won't work for some reason
 import builtin
 import enemies
+import playerstats
 from builtin import askrestart
 from builtin import checkpin
 from builtin import fight
@@ -60,7 +61,7 @@ if start == 1:
 
         else:
             print("Even I don't know how, but you died thanks to something")
-            builtin.ask_restart()
+            askrestart.ask_restart()
 
 # Dungeon arc
 elif start == 2:
