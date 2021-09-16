@@ -4,15 +4,7 @@
 # the reason is that directories are NAMESPACES in python, and its files are CLASSES
 # so its valuable thing. Learn more about OOP.
 
-from re import A
-from time import sleep
-import random
-import os
-import sys
-from util import *
-
-import value # thats needed for fast editing the messages
-import savesengine
+from everything import * # imports are now in another file
 
 currentSave = savesengine.emptySave(); 
 currentSaveId = 1
