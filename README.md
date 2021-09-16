@@ -22,18 +22,17 @@ The builtin functions are still in-dev so for now you shouldn't worry about that
 
 ### **Changelogs**
 
-### `0.1.0`
-
-* Project Released on GitHub
-
-### `0.1.1`
-
-* Added README.md and updated it multiple times
+### `0.1.3`
+* Code cleanup
+* Library rearrange
 
 ### `0.1.2`
-
 * Ordered some files so that devs can modify them more easily
-
 * Since the change made before caused some bugs (instead of doing ```import directory``` and then ```directory.module.function()``` we did ```from directory import module```)
-
 * Updated README.md as usual
+### `0.1.1`
+* Added README.md and updated it multiple times
+
+### `0.1.0`
+* Project Released on GitHub
+

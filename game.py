@@ -1,70 +1,125 @@
 # Local Modules
 # Remember to do 'from directory import file' to use its functions, else it won't work for some reason
-import builtin
-import enemies
-from builtin import askrestart
-from builtin import checkpin
-from builtin import fight
 
-from time import sleep
-import random
+# the reason is that directories are NAMESPACES in python, and its files are CLASSES
+# so its valuable thing. Learn more about OOP.
 
-# The Max value that you want to use should be the limit that is included (example: I want to do a probability within 1 and 100, 100 included, so I write that "max" is 100)
-def percentual(max):
-    global perc
-    perc = random.randrange(1, max+1)
+from everything import * # imports are now in another file
+
+currentSave = savesengine.emptySave(); 
+currentSaveId = 1
+
+def save(): savesengine.writeSave(currentSave, currentSaveId)
+
 # Credentials
-print("Insert your username")
-name = input()
-builtin.askrestart.ask_restart()
-print("Hello, " + name)
-print("Please enter the PIN to try out the Program")
-
-# builtin Variables
-
-perc = percentual(100)
 
 
-checkpin.check_pin(5047)
-print("Prepare yourself for this game!")
-print("Please wait 1 minute before continuing, we need to load at least 1 TB of functionalities")
-sleep(2)
-print("Just joking! All the features should've loaded since you started the program")
-sleep(0.5)
-# Asks you where you want to start your adventure
-print("Where would you like to start your adventure at? Type the ID of the area you want to start at to actually start!")
-print("Options:\n\"1\" to start in the woods\n\"2\" to start in a dungeon\n\"3\" to start in an haunted mansion")
-start = int(input())
-print("Quick instructions: type the choice you want to make by saying the letter (ID) of the option you want to "
-      "choose\nRemember, this program is CASE SENSITIVE")
+pickedasave = False;
+print("Hello, stranger. Would you like to start your adventure?")
+print("Y/n")
+ans = userChoice("", ["y", "n"])
+if ans == "y": 0
+if ans == "n": fancyPrint("Bye then", end=""); sleep(0.75); print("!", end=""); sleep(0.5); exit(0)
+
+if savesengine.retrieveSaves().__len__() != 0:
+    fancyPrint("Found this saves: ")
+    fancyPrint(savesengine.retrieveSaves())
+    fancyPrint("Would you like to pick one?")
+    sleep(0.5)
+    fancyPrint("Y/n")
+    ans = userChoice("", ["y", "n"])
+    if ans == "y":
+        while True:
+            while True:
+                fancyPrint("Which one?")
+                fastFancyPrint("Note: pick only a number!")
+                selection = dinput()
+                if isint(selection): break; 
+            fancyPrint(f"Picked save №{selection}. Are you sure?")
+            fancyPrint("Y/n")
+            ans = userChoice("", ["y", "n"])
+            if ans == "y": break;
+        currentSave = savesengine.getSave(int(selection))
+        pickedasave = True
+    if ans == "n":0
+if pickedasave == False:
+    fancyPrint("OK then, so how do I call you?")
+    name = dinput()
+    #ask_restart() # why are you asking for a restart here?
+
+    fancyPrint(f"Hello, {name}.") # the same as "" + name, but simplier
+    currentSave["name"] = name
+    while True:
+        fancyPrint(f"Please write down the ID of your save file.")
+        ans = dinput()
+        if isint(ans): break; 
+    currentSaveId = int(ans)
+    save()
+
+    fancyPrint("Would you like to name your save?")
+    sleep(0.5)
+    fastFancyPrint("Y/n")
+    ans = userChoice("", ["y", "n"])
+    if ans == "y":
+        while True:
+            fancyPrint("Please enter a name for your save.")
+            ans = dinput()
+            ans2 = userChoice("Are you sure?(Y/n)", ["y", "n"])
+            if ans2 == "y": break; 
+        currentSave["saveName"] = ans
+        save()
+gamelogo()
+
+fastFancyPrint("Where would you like to start your adventure at? Type the ID of the area you want to start at to actually start!")
+fastFancyPrint("Options:\n\"1\" to start in the woods\n\"2\" to start in a dungeon\n\"3\" to start in an haunted mansion")
+start = int(userChoice("", [1, 2, 3]))
+fancyPrint("Quick instructions: type the choice you want to make by saying the letter (ID) of the option you want to choose")
 # Woods arc
 if start == 1:
-    print("You find yourself in the woods of MaterTua and there is a mysterious chest behind you")
+    fancyPrint("You find yourself in the woods of MaterTua and there is a mysterious chest behind you")
     sleep(0.5)
-    print("What do you do?")
-    print("a: You open the chest and see if it has something useful in it")
-    print("b: You just don't open it because you don't know if it has something that will kill you")
-    print("c: You- wait, why would you eat it")
-    opt = input()
-    if opt == "a":
-        percentual(100)
-        if perc <= 75:
-            print("You obtained...")
-            sleep(3)
-            print("Nothing!")
-            # Continue from here
-        
-        elif perc == 76:
-            print("EXPlOOOOOOOOOOOOOSION")
-            exit()
+    fastFancyPrint(value.woods1question)
 
-        else:
-            print("Even I don't know how, but you died thanks to something")
-            builtin.ask_restart()
+    while True:
+        opt = dinput()
+        if opt == "a":
+            perc = percentual(100)
+            if perc <= 75:
+                print("You obtained", end="")
+                sleep(1)
+                print(".", end="")
+                sleep(1)
+                print(".", end="")
+                sleep(1)
+                print(".")
+                print("A whole lot of nothing!")
+                # Continue from here
+            
+            elif perc == 76:
+                fancyPrint("Hey wait, is that a bomb?.. BOOOM!!")
+                sleep(0.08)
+                fancyPrint("You died of explosion :(")
+                exit(0)
+
+            else:
+                fancyPrint("You found a lot of diamonds and gold!")
+                fancyPrint("That would be enough for you to retire")
+                fancyPrint("and live the rest of your life happily.")
+                print("\n\nEnd of story", end="")
+                sleep(0.25)
+                print("!")
+                exit(0)
+
+            break; 
+        if opt == "b":
+            0
+        
+        fancyPrint("Looks like you answered the wrong answer. Try again")
+    
 
 # Dungeon arc
 elif start == 2:
-    print("We're indev lmao")
+    print(value.indeverrormsg)
 # Haunted Mansion arc
 elif start == 3:
-    print("We're indev lmao")
+    print(value.indeverrormsg)

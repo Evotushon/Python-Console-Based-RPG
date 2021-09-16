@@ -1,0 +1,18 @@
+{
+   "gameVersion": 0.1,
+   "name": "dave",
+   "xp": 0,
+   "saveName": "dave_the_save",
+   "settings": {},
+   "gameData": {
+      "locationData": {
+         "currentLocation": "non-existance",
+         "step": -1,
+         "timeEnter": -1
+      },
+      "money": 150,
+      "xp": 5,
+      "health": 100
+   },
+   "lastTimeVisit": 1631747128.8027422
+}
